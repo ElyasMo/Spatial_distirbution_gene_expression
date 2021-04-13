@@ -3,12 +3,6 @@ Here I have developed a pipeline to monitor the spatial distribution of gene exp
 
 **The R markdown output**
 ---
-title: "TMEM119-modified"
-author: "Elyas Mohammadi"
-date: "April 9, 2021"
-output: html_document
----
----
 title: "TMEM119-spatial distribution of expression"
 author: "Elyas Mohammadi"
 date: "April 2, 2021"
