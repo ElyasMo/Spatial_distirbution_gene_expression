@@ -10,7 +10,7 @@ output:
   html_document:
 ---
 
-```{r, warning = FALSE, message = FALSE, cache=TRUE}
+```{r}
 
 library(Seurat)
 library(sctransform)
