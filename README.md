@@ -341,7 +341,7 @@ CR_sample_1 <- RenameIdents(CR_sample_1, new.cluster.ids)
 SpatialDimPlot(CR_sample_1, label = FALSE, label.size =2, crop = FALSE)
 ```
 
-**Plotting**
+**Preparing threasholds for plotting**
 
 ```{r , warning = FALSE, message = FALSE, cache=TRUE}
 library(ggplot2)
@@ -401,7 +401,7 @@ HE_SP2_meta_THR4 <- subset(HE_SP2_meta, subset =  percent.AD > THR4)
 
 ```
 
-**In this section you can see CR_control_1 plots based on the threashold you determined at the beginning (THR threasholds)**
+**In this section you can see the plots based on the threashold you determined at the beginning (THR threasholds)**
 
 ```{r , warning = FALSE, message = FALSE, cache=TRUE, fig.show='hold', out.width="25%", fig.fullwidth = TRUE}
 
@@ -554,5 +554,6 @@ print(SpatialDimPlot(HE_sample_22, label = FALSE, label.size =2, crop = FALSE))
 ```{r , warning = FALSE, message = FALSE, cache=TRUE, fig.show='hold', out.width="100%", fig.fullwidth = TRUE}
 boxplot(CR_sample_11@meta.data$percent.AD, CR_control_11@meta.data$percent.AD, HE_sample_11@meta.data$percent.AD, HE_control_11@meta.data$percent.AD, HE_sample_22@meta.data$percent.AD, HE_control_22@meta.data$percent.AD , main = "% of remained desired gene after filtration", names=c("CR_SP1", "CR_CT1", "HE_SP1", "HE_CT1", "HE_SP2", "HE_CT2"), col = c( "dark blue","orange","red", "yellow", "light blue", "purple"), las = 2)
 ```
+
 
 
