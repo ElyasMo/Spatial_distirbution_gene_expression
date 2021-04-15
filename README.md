@@ -260,6 +260,7 @@ HE_control_2[["percent.AD"]]<-PercentageFeatureSet(HE_control_2,features=AD_gene
 boxplot(CR_sample_1@meta.data$percent.AD, CR_control_1@meta.data$percent.AD, HE_sample_1@meta.data$percent.AD, HE_control_1@meta.data$percent.AD, HE_sample_2@meta.data$percent.AD, HE_control_2@meta.data$percent.AD , main = "Multiple boxplots for comparision of % of desired gene", names=c("CR_SP1", "CR_CT1", "HE_SP1", "HE_CT1", "HE_SP2", "HE_CT2"), col = c( "dark blue","orange","red", "yellow", "light blue", "purple"), las = 2)
 
 ```
+![Boxplot1- Helps to determine threasholds in the next chunck](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Boxplot1.png)
 **The threasholds can be added in this section**
 ```{r, warning = FALSE, message = FALSE, cache=TRUE, fig.show='hold', out.width="100%", fig.fullwidth = TRUE}
 THR1 = 0
@@ -340,6 +341,7 @@ CR_sample_1 <- RenameIdents(CR_sample_1, new.cluster.ids)
 ##Here we can see the manual grouping of amyloid spots in first CR sample experiment
 SpatialDimPlot(CR_sample_1, label = FALSE, label.size =2, crop = FALSE)
 ```
+![Manually grouped spots](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Manual%20grouping.png)
 
 **Preparing threasholds for plotting**
 
@@ -550,14 +552,13 @@ print(SpatialDimPlot(HE_sample_22, label = FALSE, label.size =2, crop = FALSE))
 }
 
 ```
-Some instances of the resluts:
+Some instances of the resluts: 
+In the background, you can observe the intact image histology area and in the front, the distribution of gene expression.
 ![Spatial distribution of gene expressions](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Distributions.PNG)
-
-![Image histologies](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/histologies.PNG)
 
 ```{r , warning = FALSE, message = FALSE, cache=TRUE, fig.show='hold', out.width="100%", fig.fullwidth = TRUE}
 boxplot(CR_sample_11@meta.data$percent.AD, CR_control_11@meta.data$percent.AD, HE_sample_11@meta.data$percent.AD, HE_control_11@meta.data$percent.AD, HE_sample_22@meta.data$percent.AD, HE_control_22@meta.data$percent.AD , main = "% of remained desired gene after filtration", names=c("CR_SP1", "CR_CT1", "HE_SP1", "HE_CT1", "HE_SP2", "HE_CT2"), col = c( "dark blue","orange","red", "yellow", "light blue", "purple"), las = 2)
 ```
-
+![The box plot of the remained % of desired gene](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Boxplot2.png)
 
 
