@@ -554,7 +554,7 @@ print(SpatialDimPlot(HE_sample_22, label = FALSE, label.size =2, crop = FALSE))
 ```
 Some instances of the resluts: 
 In the background, you can observe the intact image histology area and in the front, the distribution of gene expression.
-![Spatial distribution of gene expressions](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Distributions.PNG)
+![Spatial distribution of gene expressions](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Dist.PNG)
 
 ```{r , warning = FALSE, message = FALSE, cache=TRUE, fig.show='hold', out.width="100%", fig.fullwidth = TRUE}
 boxplot(CR_sample_11@meta.data$percent.AD, CR_control_11@meta.data$percent.AD, HE_sample_11@meta.data$percent.AD, HE_control_11@meta.data$percent.AD, HE_sample_22@meta.data$percent.AD, HE_control_22@meta.data$percent.AD , main = "% of remained desired gene after filtration", names=c("CR_SP1", "CR_CT1", "HE_SP1", "HE_CT1", "HE_SP2", "HE_CT2"), col = c( "dark blue","orange","red", "yellow", "light blue", "purple"), las = 2)
