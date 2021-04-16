@@ -408,49 +408,55 @@ HE_SP2_meta_THR4 <- subset(HE_SP2_meta, subset =  percent.AD > THR4)
 ```{r , warning = FALSE, message = FALSE, cache=TRUE, fig.show='hold', out.width="25%", fig.fullwidth = TRUE}
 
 a <- c("CR_CT1 > THR1, nr spots:","CR_CT1 > THR2, nr spots:","CR_CT1 > THR3, nr spots:","CR_CT1 > THR4, nr spots")
+c <- c(CR_CT1_meta_THR1,CR_CT1_meta_THR2,CR_CT1_meta_THR3,CR_CT1_meta_THR4)
 b=1
+
 for (x in c("CR_CT1_meta_THR1","CR_CT1_meta_THR2","CR_CT1_meta_THR3","CR_CT1_meta_THR4" )){
-  print(ggplot()+
-    stat_density_2d(aes(CR_CT1_meta_back$Y,-(CR_CT1_meta_back$X)), 
-                  geom = "polygon", colour="light grey",contour_var = "count")+
-    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = stat(piece)), 
-                  geom = "polygon",contour_var = "ndensity")+
-    scale_fill_gradientn(colors = plasma(10),limits=c(0,20), breaks=c(0, 5, 10 ,15,20),labels=c(0, 5, 10 ,15,20))+
-    labs(x= "x", y = "y")+
-    xlim(-30, 180)+
-    ylim(-90, 20)+
-    theme_bw()+ggtitle(a[b],as.character(length(get(x)$X))))
-  b=b+1
+  c <- (length(get(x)$X))
+    print(ggplot()+
+              stat_density_2d(aes(CR_CT1_meta_back$Y,-(CR_CT1_meta_back$X)), 
+                              geom = "point", colour="light grey",contour_var = "count",h=1, n=200)+
+              stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = (stat(nlevel))*c), 
+                              geom = "polygon",contour = T, n=100)+
+             scale_fill_gradientn(colors = c(NA, NA, NA,NA,plasma(7)),limits=c(0,30), breaks=c(0, 10, 20,30),labels=c(0, 10, 20,30))+
+              labs(x= "x", y = "y")+
+              xlim(-30, 180)+
+              ylim(-90, 20)+
+              theme_bw()+ggtitle(a[b],as.character(length(get(x)$X))))
+    b=b+1
 }
 
 
 a <- c("CR_SP1 > THR1, nr spots:","CR_SP1 > THR2, nr spots:","CR_SP1 > THR3, nr spots:","CR_SP1 > THR4, nr spots")
 b=1
 for (x in c("CR_SP1_meta_THR1","CR_SP1_meta_THR2","CR_SP1_meta_THR3","CR_SP1_meta_THR4" )){
+    c <- (length(get(x)$X))
   print(ggplot()+
     stat_density_2d(aes(CR_SP1_meta_back$Y,-(CR_SP1_meta_back$X)), 
-                  geom = "polygon", colour="light grey",contour_var = "count")+
-    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = stat(piece)), 
-                  geom = "polygon",contour_var = "ndensity")+
-    scale_fill_gradientn(colors = plasma(10),limits=c(0,20), breaks=c(0, 5, 10 ,15,20),labels=c(0, 5, 10 ,15,20))+
+                  geom = "point", colour="light grey",contour_var = "count",h=1, n=200)+
+    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = (stat(nlevel))*c), 
+                  geom = "polygon",contour = T, n=100)+
+    scale_fill_gradientn(colors = c(NA, NA, NA,NA,plasma(8)),limits=c(0,70))+
     labs(x= "x", y = "y")+
     xlim(-30, 180)+
     ylim(-90, 20)+
     theme_bw()+ggtitle(a[b],as.character(length(get(x)$X)))+
     stat_density_2d(aes(CR_SP1_density_meta$Y,-(CR_SP1_density_meta$X) , fill = stat(piece)), 
-                  geom = "polygon", colour="green",contour_var = "count"))
+                  geom = "polygon", colour="green",contour_var = "count", h=1))
   b=b+1
 }
 
 a <- c("HE_CT1 > THR1, nr spots:","HE_CT1 > THR2, nr spots:","HE_CT1 > THR3, nr spots:","HE_CT1 > THR4, nr spots")
 b=1
-for (x in c("HE_CT1_meta_THR1","HE_CT1_meta_THR2","HE_CT1_meta_THR3","HE_CT1_meta_THR4" )){
+
+for (x in c("HE_CT1_meta_THR1","HE_CT1_meta_THR2","HE_CT1_meta_THR3","HE_CT1_meta_THR4")){
+  c <- (length(get(x)$X))
   print(ggplot()+
     stat_density_2d(aes(HE_CT1_meta_back$Y,-(HE_CT1_meta_back$X)), 
-                  geom = "polygon", colour="light grey",contour_var = "count")+
-    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = stat(piece)), 
-                  geom = "polygon",contour_var = "ndensity")+
-    scale_fill_gradientn(colors = plasma(10),limits=c(0,20), breaks=c(0, 5, 10 ,15,20),labels=c(0, 5, 10 ,15,20))+
+                  geom = "point", colour="light grey",contour_var = "count",h=1, n=200)+
+    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = (stat(nlevel))*c), 
+                  geom = "polygon",contour = T, n=100)+
+    scale_fill_gradientn(colors = c(NA, NA, NA, NA,plasma(8)), limits=c(0,65))+
     labs(x= "x", y = "y")+
     xlim(-30, 180)+
     ylim(-90, 20)+
@@ -458,15 +464,17 @@ for (x in c("HE_CT1_meta_THR1","HE_CT1_meta_THR2","HE_CT1_meta_THR3","HE_CT1_met
   b=b+1
 }
 
+
 a <- c("HE_CT2 > THR1, nr spots:","HE_CT2 > THR2, nr spots:","HE_CT2 > THR3, nr spots:","HE_CT2 > THR4, nr spots")
 b=1
 for (x in c("HE_CT2_meta_THR1","HE_CT2_meta_THR2","HE_CT2_meta_THR3","HE_CT2_meta_THR4" )){
+    c <- (length(get(x)$X))
   print(ggplot()+
     stat_density_2d(aes(HE_CT2_meta_back$Y,-(HE_CT2_meta_back$X)), 
-                  geom = "polygon", colour="light grey",contour_var = "count")+
-    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = stat(piece)), 
-                  geom = "polygon",contour_var = "ndensity")+
-    scale_fill_gradientn(colors = plasma(10),limits=c(0,20), breaks=c(0, 5, 10 ,15,20),labels=c(0, 5, 10 ,15,20))+
+                  geom = "point", colour="light grey",contour_var = "count", h=1, n=200)+
+    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = (stat(nlevel))*c), 
+                  geom = "polygon",contour = T, n=100)+
+    scale_fill_gradientn(colors = c(NA, NA, NA,NA,plasma(8)), limits=c(0,22))+
     labs(x= "x", y = "y")+
     xlim(-30, 180)+
     ylim(-90, 20)+
@@ -478,12 +486,13 @@ for (x in c("HE_CT2_meta_THR1","HE_CT2_meta_THR2","HE_CT2_meta_THR3","HE_CT2_met
 a <- c("HE_SP1 > THR1, nr spots:","HE_SP1 > THR2, nr spots:")
 b=1
 for (x in c("HE_SP1_meta_THR1","HE_SP1_meta_THR2")){
+      c <- (length(get(x)$X))
   print(ggplot()+
     stat_density_2d(aes(HE_SP1_meta_back$Y,-(HE_SP1_meta_back$X)), 
-                  geom = "polygon", colour="light grey",contour_var = "count")+
-    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = stat(piece)), 
-                  geom = "polygon",contour_var = "ndensity")+
-    scale_fill_gradientn(colors = plasma(10),limits=c(0,20), breaks=c(0, 5, 10 ,15,20),labels=c(0, 5, 10 ,15,20))+
+                                 geom = "point", colour="light grey",contour_var = "count", h=1, n=200)+
+    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = (stat(nlevel))*c), 
+                  geom = "polygon",contour = T, n=100)+
+    scale_fill_gradientn(colors = c(NA, NA, NA,NA,plasma(8)), limits=c(0,50))+
     labs(x= "x", y = "y")+
     xlim(-30, 180)+
     ylim(-90, 20)+
@@ -501,12 +510,13 @@ knitr::include_graphics("D:/Poland/PHD/spatial/Second_set/Untitled.jpg")
 a <- c("HE_SP2 > THR1, nr spots:","HE_SP2 > THR2, nr spots:","HE_SP2 > THR3, nr spots:","HE_SP2 > THR4, nr spots")
 b=1
 for (x in c("HE_SP2_meta_THR1","HE_SP2_meta_THR2","HE_SP2_meta_THR3","HE_SP2_meta_THR4" )){
+        c <- (length(get(x)$X))
   print(ggplot()+
     stat_density_2d(aes(HE_SP2_meta_back$Y,-(HE_SP2_meta_back$X)), 
-                  geom = "polygon", colour="light grey",contour_var = "count")+
-    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = stat(piece)), 
-                  geom = "polygon",contour_var = "ndensity")+
-    scale_fill_gradientn(colors = plasma(10),limits=c(0,20), breaks=c(0, 5, 10 ,15,20),labels=c(0, 5, 10 ,15,20))+
+                   geom = "point", colour="light grey",contour_var = "count", h=1, n=200)+
+    stat_density_2d(aes(get(x)$Y,-(get(x)$X) , fill = (stat(nlevel))*c), 
+                  geom = "polygon",contour = T, n=100)+
+    scale_fill_gradientn(colors = c(NA, NA, NA,NA,plasma(8)), limits=c(0,75))+
     labs(x= "x", y = "y")+
     xlim(-30, 180)+
     ylim(-90, 20)+
@@ -554,7 +564,7 @@ print(SpatialDimPlot(HE_sample_22, label = FALSE, label.size =2, crop = FALSE))
 ```
 Some instances of the resluts: 
 In the background, you can observe the intact image histology area and in the front, the distribution of gene expression.
-![Spatial distribution of gene expressions](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Dist.PNG)
+![Spatial distribution of gene expressions](https://github.com/ElyasMo/Spatial_distirbution_gene_expression/blob/main/Distt.PNG)
 
 ```{r , warning = FALSE, message = FALSE, cache=TRUE, fig.show='hold', out.width="100%", fig.fullwidth = TRUE}
 boxplot(CR_sample_11@meta.data$percent.AD, CR_control_11@meta.data$percent.AD, HE_sample_11@meta.data$percent.AD, HE_control_11@meta.data$percent.AD, HE_sample_22@meta.data$percent.AD, HE_control_22@meta.data$percent.AD , main = "% of remained desired gene after filtration", names=c("CR_SP1", "CR_CT1", "HE_SP1", "HE_CT1", "HE_SP2", "HE_CT2"), col = c( "dark blue","orange","red", "yellow", "light blue", "purple"), las = 2)
